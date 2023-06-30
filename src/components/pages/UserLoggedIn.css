@@ -1,0 +1,89 @@
+.land-hero-container {
+  background: url('../../backgrounds/back3.png') center center/cover no-repeat;
+  height: 100vh;
+  width: 100%;
+  color: #ffff;
+  font-size: larger;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+}
+
+.land-hero-container h1 {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 8px; /* Reduced margin */
+}
+
+.land-hero-container p {
+  margin-top: 4px; /* Reduced margin */
+  font-size: 28px; /* Adjusted font size */
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+.hero-btns {
+  margin-top: 16px; /* Reduced margin */
+}
+
+.hero-btns .btn {
+  margin: 4px;
+}
+
+.fa-play-circle {
+  margin-left: 4px;
+}
+
+@media screen and (max-width: 960px) {
+  .land-hero-container h1 {
+    font-size: 70px;
+    margin-top: -150px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .land-hero-container h1 {
+    font-size: 50px;
+    margin-top: -100px;
+  }
+
+  .land-hero-container p {
+    font-size: 24px; /* Adjusted font size */
+  }
+
+  .btn-mobile {
+    display: block;
+    text-decoration: none;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+.product-result-container {
+  text-align: center;
+  margin-top: 20px; /* Reduced margin */
+}
+
+.authentic-product-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px; /* Reduced margin */
+}
+
+.authentic-product-image {
+  height: 30vh;
+  max-width: 80%;
+  object-fit: contain;
+  margin-bottom: 6px; /* Reduced margin */
+}
+
+.dummy-text {
+  font-size: 18px; /* Adjusted font size */
+  margin-top: 6px; /* Reduced margin */
+}
