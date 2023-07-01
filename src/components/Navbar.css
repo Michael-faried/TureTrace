@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px;
+  height: 70px; /* Adjusted height to match navbar */
   max-width: 1500px;
 }
 
@@ -75,6 +75,13 @@
   display: none;
 }
 
+.logo-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  object-fit: contain;
+}
+
 @media screen and (max-width: 960px) {
   .NavbarItems {
     position: relative;
@@ -113,10 +120,14 @@
   } */
 
   .navbar-logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(25%, 50%);
+    display: flex;
+    align-items: center;
+    color: #fff;
+    justify-self: start;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
   }
 
   .menu-icon {
@@ -154,4 +165,13 @@
     color: #242424;
     transition: 250ms;
   }
+
+  .logo-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    object-fit: contain;
+  }
+  
+  
 }

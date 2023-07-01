@@ -55,6 +55,8 @@ export default function Products() {
               >
               {companyName}
             </Typography>
+            {console.log('company name should appear')}
+            {console.log(companyName)}
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
               Company Info
             </Typography>

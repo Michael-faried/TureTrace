@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import logo from '../backgrounds/logo.png';
+
 
 function Navbar() {
   const navigate = useNavigate();
@@ -39,9 +41,10 @@ function Navbar() {
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            TrueTrace
-          </Link>
+        <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+          <img src={logo} alt='Logo' className='logo-image' />
+          TrueTrace
+        </Link>
           <div className='menu-icon' onClick={handleClick}>
             <FontAwesomeIcon icon={click ? faTimes : faBars} />
           </div>
