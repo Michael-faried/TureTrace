@@ -10,6 +10,7 @@ import logo from '../backgrounds/logo.png';
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [companyName, setCompanyName] = useState('');
 
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -24,6 +25,13 @@ function Navbar() {
       setButton(true);
     }
   };
+
+  useEffect(() => {
+    const storedCompanyName = localStorage.getItem('companyName');
+    if (storedCompanyName) {
+      setCompanyName(storedCompanyName);
+    }
+  }, []);
 
   useEffect(() => {
     showButton();
@@ -71,7 +79,7 @@ function Navbar() {
             {shouldShowUploadButton && (
               <li className='nav-item'>
                 <Link to='/upload' className='nav-links' onClick={closeMobileMenu}>
-                  Upload Products
+                 Upload Products
                 </Link>
               </li>
             )}

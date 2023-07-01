@@ -5,59 +5,6 @@ import { Navigate } from 'react-router-dom';
 import { register_comp } from '../../web3Client';
 import { Link } from 'react-router-dom';
 
-const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Wrapper = styled.div`
-  width: 80%;
-  max-width: 400px;
-  padding: 20px;
-  background-color: white;
-`;
-
-const Title = styled.h1`
-  font-size: 24px;
-  font-weight: 500;
-  text-align: center;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Input = styled.input`
-  flex: 1;
-  min-width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  border: none;
-  padding: 15px 20px;
-  background-color: teal;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 10px;
-  border-radius: 4px;
-`;
-
-const SignUpLink = styled(Link)`
-  text-align: center;
-  color: teal;
-  text-decoration: none;
-`;
 
 class CompanySignUp extends Component {
   constructor() {
@@ -139,7 +86,7 @@ class CompanySignUp extends Component {
                 placeholder="Password"
                 required
                 onChange={this.handleChange}
-              />
+                />
               <Input
                 type="password"
                 name="confirmpass"
@@ -160,3 +107,57 @@ class CompanySignUp extends Component {
 }
 
 export default CompanySignUp;
+
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Wrapper = styled.div`
+  width: 80%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: white;
+`;
+
+const Title = styled.h1`
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Input = styled.input`
+  flex: 1;
+  min-width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  border: none;
+  padding: 15px 20px;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border-radius: 4px;
+`;
+
+const SignUpLink = styled(Link)`
+  text-align: center;
+  color: teal;
+  text-decoration: none;
+`;

@@ -13,7 +13,10 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import image from "../../backgrounds/back1.png";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import { useContext } from 'react';
+import { CompanyContext } from '../CompanyContext';
+
 
 function Copyright() {
   return (
@@ -35,7 +38,7 @@ const defaultTheme = createTheme();
 
 export default function Products() {
   const location = useLocation();
-  const companyName = location?.state?.companyName || '';
+  const { companyName } = useContext(CompanyContext);
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
@@ -55,8 +58,6 @@ export default function Products() {
               >
               {companyName}
             </Typography>
-            {console.log('company name should appear')}
-            {console.log(companyName)}
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
               Company Info
             </Typography>

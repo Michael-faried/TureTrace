@@ -36,11 +36,6 @@ function Popup(props){
                     className="myText"
                     placeholder="enter product ID">
                 </textarea>
-                <textarea
-                    onChange={(event) => {setCompanyName(event.target.value)}}
-                    className="myText"
-                    placeholder="enter company name">
-                </textarea>
                 <button onClick={submitUpload} className="btn">Upload</button>
                 <button className="btn--close" onClick={()=>props.setTrigger(false)}>Close</button>
                 {props.childern}

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Popup from '../Popup';
 import image from '../../backgrounds/back3.png';
-import { init } from '../../web3Client';
+import { init, UploadProducts } from '../../web3Client';
 import QrScreen from '../pages/Qrscreen';
 import Papa from 'papaparse';
 import QRCode from 'qrcode';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import { useContext } from 'react';
+import { CompanyContext } from '../CompanyContext';
+
 
 function Upload() {
   useEffect(() => {
@@ -14,6 +17,7 @@ function Upload() {
   }, []);
 
   const [buttonPup, setButtonPup] = useState(false);
+  const { companyName } = useContext(CompanyContext);
   const [csvData, setCSVData] = useState([]);
   const [showQrScreen, setShowQrScreen] = useState(false); // Track the state for showing the QR screen
 
@@ -26,6 +30,14 @@ function Upload() {
         const dataArray = results.data.map((row) => Object.values(row));
         setCSVData(dataArray);
         setShowQrScreen(true); // Show the QR screen when CSV is uploaded
+        // console.log(dataArray[0]); 
+        const hashedArray = []; 
+        for(let i =0; i<5; i++)
+        {
+          UploadProducts(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]).then((res) => {
+            console.log(res);
+          })
+        }
         // dataArray -> 2d array holding csv data
       },
       error: (error) => {
@@ -73,6 +85,7 @@ function Upload() {
     <div className="popup" style={{ backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
       <div className="popup-inner">
         <main>
+          <h1>{companyName}</h1>
           <h1>Click to Upload a product(s)</h1>
           <br />
           <button onClick={() => setButtonPup(true)}>Upload Product Manually</button>
