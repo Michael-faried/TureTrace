@@ -84,13 +84,24 @@ export async function login_comp(_name,_password){
 }
 
 
-export async function UploadProducts(_id,_name,_model,_description,_companyName,_imageLink){
+export async function UploadProducts_send(_id,_name,_model,_description,_companyName,_imageLink){
     if(!is_initialized)
     {
         await init();
     }
-    // console.log(_id,_name,_model,_description,_companyName,_imageLink);
-    return Smartcontract.methods.upload_Product(_id,_name,_model,_description,_companyName,_imageLink).send({from : selectedAccount});
+    
+    console.log(_id,_name,_model,_description,_companyName,_imageLink);
+    return Smartcontract.methods.upload_Product(_id,_name,_model,_description,_companyName,_imageLink).send({from:selectedAccount});
+}
+
+export async function UploadProducts_call(_id,_name,_model,_description,_companyName,_imageLink){
+    if(!is_initialized)
+    {
+        await init();
+    }
+    
+    console.log(Smartcontract.methods.upload_Product(_id,_name,_model,_description,_companyName,_imageLink).call());
+    return Smartcontract.methods.upload_Product(_id,_name,_model,_description,_companyName,_imageLink).call();
 }
 
 export async function get_product(product_add){

@@ -1,6 +1,6 @@
 import React ,{useState} from "react";
 import '../components/Popup.css'
-import {UploadProducts} from '../web3Client';
+import {UploadProducts_send} from '../web3Client';
 
 
 function Popup(props){
@@ -11,7 +11,7 @@ function Popup(props){
 
     //product items uploaded to blockchain
     const submitUpload = () => {
-        const hash= UploadProducts(parseInt(ProductID,10),ProductName,ProductDesc,CompanyName);
+        const hash= UploadProducts_send(parseInt(ProductID,10),ProductName,ProductDesc,CompanyName);
         console.log(hash);
         props.setTrigger(false);
         // add ProductName to URL as a parameter
