@@ -46,17 +46,6 @@ contract System {
         companies[_compaddress] = Company(_name,_email,_password,_cert_num);
     }
 
-    function upload_Product(uint _id, string memory _name, string memory _model, string memory _description, string memory _companyName, string memory _imageLink) public returns (bytes32 hashed) {
-        Product memory p = Product(_id, _name, _model, _description, _companyName, _imageLink);
-        // Encoding Using the Four Attributes (Image Link Not Included)
-        bytes32 p_hashed = keccak256(abi.encode(p.id, p.name, p.model, p.description, p.companyName));
-        products[p_hashed] = p;
-
-        // Add the product ID to the array of product IDs for the respective company
-        companyProducts[_companyName].push(_id);
-        return p_hashed;
-    }
-
     function login_user (string memory user_add , string memory _name , string memory _password) public view returns (bool found)
     {
             User memory user = users[user_add];
@@ -76,6 +65,23 @@ contract System {
         else
             return false;
     }
+
+    function upload_Product(uint _id, string memory _name, string memory _model, string memory _description, string memory _companyName, string memory _imageLink) public returns (bytes32 hashed) {
+        Product memory p = Product(_id, _name, _model, _description, _companyName, _imageLink);
+        // Encoding Using the Four Attributes (Image Link Not Included)
+        bytes32 p_hashed = keccak256(abi.encode(p.id, p.name, p.model, p.description, p.companyName));
+        products[p_hashed] = p;
+
+        // Add the product ID to the array of product IDs for the respective company
+        companyProducts[_companyName].push(_id);
+        return p_hashed;
+    }
+    
+        // Get a Product by its Hash
+    function get_product(bytes32 product_add) external view returns (Product memory Prod) {
+        return products[product_add];
+    }
+
 
     // Verify a product and return its attributes or null values if not found
     function verify_product(bytes32 product_add) external view returns (uint, string memory, string memory, string memory, string memory, string memory) {

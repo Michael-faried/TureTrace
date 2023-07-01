@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Popup from '../Popup';
 import image from '../../backgrounds/back3.png';
-import { init, UploadProducts } from '../../web3Client';
+import { init, UploadProducts_call,UploadProducts_send } from '../../web3Client';
 import QrScreen from '../pages/Qrscreen';
 import Papa from 'papaparse';
 import QRCode from 'qrcode';
@@ -30,15 +30,40 @@ function Upload() {
         const dataArray = results.data.map((row) => Object.values(row));
         setCSVData(dataArray);
         setShowQrScreen(true); // Show the QR screen when CSV is uploaded
-        // console.log(dataArray[0]); 
-        const hashedArray = []; 
-        for(let i =0; i<5; i++)
-        {
-          UploadProducts(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]).then((res) => {
+
+        const hashedArray = [];
+        const promises = [];
+        
+        for (let i = 0; i < 5; i++) {
+          UploadProducts_send(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]).then((res) => {})
+          const promise = UploadProducts_call(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]);
+          promises.push(promise);
+          promise.then((res) => {
             console.log(res);
-          })
+            hashedArray.push(res);
+          });
         }
-        // dataArray -> 2d array holding csv data
+        
+        Promise.all(promises).then(() => {
+          
+          console.log(hashedArray);
+        });
+
+
+        // const hashedArray = []; 
+        // for(let i =0; i<5; i++)
+        // {
+        //   UploadProducts_send(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]).then((res) => {})
+        //   UploadProducts_call(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]).then((res) => {
+        //     hashedArray.push(res);
+        //     console.log(res);
+        //   })
+
+        // }
+        // console.log(hashedArray[0]);
+        // for (let i = 0; i < hashedArray.length; i++) {
+        //   console.log(hashedArray[i]);
+        // }
       },
       error: (error) => {
         console.error('Error parsing CSV file:', error);
