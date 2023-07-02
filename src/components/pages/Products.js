@@ -37,8 +37,13 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const defaultTheme = createTheme();
 
 export default function Products() {
-  const location = useLocation();
-  const { companyName } = useContext(CompanyContext);
+
+  // const location = useLocation();
+  // const { companyName } = useContext(CompanyContext);
+  const companyName2=localStorage.getItem("companyName")
+  if(companyName2 ==null){
+    console.log("company name is null");
+  }
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
@@ -56,7 +61,7 @@ export default function Products() {
               align="center"
               color="text.primary"
               >
-              {companyName}
+              {companyName2}
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
               Company Info

@@ -9,6 +9,9 @@ let selectedAccount;
 let Smartcontract;
 let is_initialized = false;
 
+
+
+
 //connection
 export const init = async ()=>{
   // connect to MetaMask
@@ -78,30 +81,31 @@ export async function login_comp(_name,_password){
         await init();
     }
     console.log("company login called from web3")
-    console.log(_name,_password);
-    // console.log(CompanySmartcontract.methods.login_company(selectedAccount,_name,_password).call());
+    // console.log(_name,_password);
+    localStorage.setItem("companyName",_name)
+    console.log(Smartcontract.methods.login_company(selectedAccount,_name,_password).call());
     return Smartcontract.methods.login_company(selectedAccount,_name,_password).call();
 }
 
 
-export async function UploadProducts_send(_id,_name,_model,_description,_companyName,_imageLink){
+export async function UploadProducts_send(_products){
     if(!is_initialized)
     {
         await init();
     }
     
-    console.log(_id,_name,_model,_description,_companyName,_imageLink);
-    return Smartcontract.methods.upload_Product(_id,_name,_model,_description,_companyName,_imageLink).send({from:selectedAccount});
+    console.log(_products);
+    return Smartcontract.methods.upload_Products(_products).send({from:selectedAccount});
 }
 
-export async function UploadProducts_call(_id,_name,_model,_description,_companyName,_imageLink){
+export async function UploadProducts_call(_products){
     if(!is_initialized)
     {
         await init();
     }
     
-    console.log(Smartcontract.methods.upload_Product(_id,_name,_model,_description,_companyName,_imageLink).call());
-    return Smartcontract.methods.upload_Product(_id,_name,_model,_description,_companyName,_imageLink).call();
+    console.log(Smartcontract.methods.upload_Products(_products).call());
+    return Smartcontract.methods.upload_Products(_products).call();
 }
 
 export async function get_product(product_add){
@@ -109,7 +113,7 @@ export async function get_product(product_add){
     {
         await init();
     }
-    return Smartcontract.methods.get_product(product_add).call({from : selectedAccount});
+    return Smartcontract.methods.get_product(product_add).call();
 }
 
 export async function verify(product_add){
@@ -118,6 +122,8 @@ export async function verify(product_add){
         await init();
     }
     //console.log(Smartcontract.methods.verify_product(product_add).call());
+    console.log("web3")
+    console.log(Smartcontract.methods.verify_product(product_add).call());
     return Smartcontract.methods.verify_product(product_add).call();
 }
 
