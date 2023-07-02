@@ -121,9 +121,25 @@ export async function verify(product_add){
     {
         await init();
     }
-    //console.log(Smartcontract.methods.verify_product(product_add).call());
-    console.log("web3")
-    console.log(Smartcontract.methods.verify_product(product_add).call());
+    // //console.log(Smartcontract.methods.verify_product(product_add).call());
+    // console.log("web3")
+    // console.log(Smartcontract.methods.verify_product(product_add).call());
     return Smartcontract.methods.verify_product(product_add).call();
+}
+
+export async function send_report(location,description,companyname){
+    if(!is_initialized)
+    {
+        await init();
+    }
+    return Smartcontract.methods.send_report("http//:123",location,description,companyname).send({from:selectedAccount});
+}
+
+export async function get_companies_names(){
+    if(!is_initialized)
+    {
+        await init();
+    }
+    return Smartcontract.methods.get_companies_names().call();
 }
 

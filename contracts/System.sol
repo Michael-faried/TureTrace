@@ -128,12 +128,12 @@ contract System {
     }
 
 
-    function send_report(string memory linkimage, string memory location, string memory  description,string memory companyname) public
+    function send_report(string memory linkimage, string memory location, string memory  description,string memory companyname) public returns (string memory desc)
     {
         Report memory report = Report(linkimage,location,description);
         companyReports[companyname].push(report);
-    } 
-
+        return description;
+    }
     function get_companies_names() public view returns(string[] memory)
     {
         uint256 length = companyAddresses.length;
