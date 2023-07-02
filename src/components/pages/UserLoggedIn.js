@@ -3,6 +3,8 @@ import { Button } from '../Button';
 import '../pages/UserLoggedIn.css';
 import QrScanner from 'qr-scanner';
 import { verify, init } from '../../web3Client';
+import { useNavigate } from 'react-router-dom';
+
 
 const UserLoggedIn = (props) => {
 
@@ -12,10 +14,10 @@ const UserLoggedIn = (props) => {
   }, []);
 
   const [qrvalue, setQrvalue] = useState('');
+  const navigate = useNavigate();
   const [state, setState] = useState('');
   const [resstate, setResState] = useState('');
   const [isAuthentic, setIsAuthentic] = useState(false);
-  const [reportText, setReportText] = useState('');
   const [showReportButton, setShowReportButton] = useState(false);
 
   // Create a reference to the hidden file input element
@@ -61,15 +63,8 @@ const UserLoggedIn = (props) => {
 
   };
 
-  // Handler for reporting the fake product
   const handleReport = () => {
-    // Perform the action to report the fake product using the reportText state
-    // You can implement your own logic here
-    console.log('Reporting fake product:', reportText);
-    // Reset the report text
-    setReportText('');
-    // Hide the report button after reporting
-    setShowReportButton(false);
+    navigate('/userreport'); // Navigate to the "products" page
   };
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -109,11 +104,6 @@ const UserLoggedIn = (props) => {
           )}
           {!isAuthentic && showReportButton && (
             <div className='report-button-container'>
-              <textarea
-                placeholder='Enter your report here...'
-                value={reportText}
-                onChange={(e) => setReportText(e.target.value)}
-              />
               <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large' onClick={handleReport}>
                 REPORT FAKE PRODUCT
               </Button>

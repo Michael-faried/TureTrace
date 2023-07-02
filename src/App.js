@@ -14,6 +14,8 @@ import CompanySignUp from './components/pages/CompanySignUp';
 import Login from './components/pages/Login';
 import CompanyLogin from './components/pages/CompanyLogin';
 import CSVUploader from './components/pages/UploadCSV';
+import UserReport from './components/pages/UserReport';
+
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
           <Route path='/company-login' element={<CompanyLogin/>} />
           <Route path='/company-sign-up' element={<CompanySignUp/>} />
           <Route path='/uploadcsv' element={<CSVUploader/>} />
+          <Route path='/userreport' element={<UserReport/>} />
+
         </Routes>
       </Router>
     </>
