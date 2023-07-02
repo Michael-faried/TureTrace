@@ -18,6 +18,11 @@ function Upload() {
 
   const [buttonPup, setButtonPup] = useState(false);
   const { companyName } = useContext(CompanyContext);
+  let companyName2= localStorage.getItem("companyName");
+  if(companyName2 ==null){
+    console.log("company name is null");
+  }
+
   const [csvData, setCSVData] = useState([]);
   const [showQrScreen, setShowQrScreen] = useState(false); // Track the state for showing the QR screen
 
@@ -26,26 +31,35 @@ function Upload() {
 
     Papa.parse(file, {
       header: true,
-      complete: (results) => {
-        
-        const hashedArray = [];
-        const promises = [];
+      complete: async  (results) => {
         
         const dataArray = results.data.map((row) => Object.values(row));
-        for (let i = 0; i < 5; i++) {
-          UploadProducts_send(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]).then((res) => {})
-          const promise = UploadProducts_call(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]);
-          promises.push(promise);
-          promise.then((res) => {
-            console.log(res);
-            hashedArray.push(res);
-          });
-        }
         
-        Promise.all(promises).then(() => {
-          
-          console.log(hashedArray);
-        });
+        if (dataArray[0].some(val => !val)) {
+          dataArray.shift();
+        }
+        let Products = [];
+        console.log(dataArray);
+
+        for (let i = 0; i < dataArray.length-1; i++) {
+
+          // let product = 
+          Products.push({
+            id:dataArray[i][0] ,
+            name: dataArray[i][1],
+            model: dataArray[i][2],
+            description: dataArray[i][3],
+            companyName: companyName2,
+            imageLink: dataArray[i][4]
+          });
+
+        }
+        // console.log(Products);
+        // console.log(JSON.stringify(Products[0]))
+        UploadProducts_send(Products);
+        const hashedArray= await UploadProducts_call(Products);
+        console.log(hashedArray);
+
         setCSVData(hashedArray);
         setShowQrScreen(true); // Show the QR screen when CSV is uploaded
 
@@ -95,7 +109,7 @@ function Upload() {
     <div className="popup" style={{ backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
       <div className="popup-inner">
         <main>
-          <h1>{companyName}</h1>
+          <h1>{companyName2}</h1>
           <h1>Click to Upload a product(s)</h1>
           <br />
           <button onClick={() => setButtonPup(true)}>Upload Product Manually</button>

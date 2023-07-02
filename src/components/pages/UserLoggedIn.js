@@ -36,24 +36,29 @@ const UserLoggedIn = (props) => {
   // QR Code Read function
   const readQcode = (e) => {
     const file = e.target.files[0];
+    console.log(file);
     if (!file) {
       return;
     }
     QrScanner.scanImage(file, { returnDetailedScanResult: true })
-      .then((result) => setQrvalue(result.data))
+      .then((result) => {
+        verify(result.data).then((res) => {
+          console.log(res);
+          if (res[0] !== 0 && res[1] !== '' && res[2] !== '' && res[3] !== '' && res[4] !== '' && res[5] !== '') {
+            setState(res);
+            setResState(res);
+            setIsAuthentic(true); // Update isAuthentic based on the verification result
+            setShowReportButton(false); // Hide the report button if the product is authentic
+          } else {
+            setState(res);
+            setIsAuthentic(false);
+            setShowReportButton(true); // Show the report button if the product is fake
+          }
+        });
+
+      })
       .catch((e) => console.log(e));
-    verify(qrvalue).then((res) => {
-      if (res[0] !== 0 && res[1] !== '' && res[2] !== '' && res[3] !== '' && res[4] !== '' && res[5] !== '') {
-        setState(res);
-        setResState(res);
-        setIsAuthentic(true); // Update isAuthentic based on the verification result
-        setShowReportButton(false); // Hide the report button if the product is authentic
-      } else {
-        setState(res);
-        setIsAuthentic(false);
-        setShowReportButton(true); // Show the report button if the product is fake
-      }
-    });
+
   };
 
   // Handler for reporting the fake product
@@ -82,7 +87,11 @@ const UserLoggedIn = (props) => {
           type='file'
           accept='image/*'
           ref={hiddenFileInput}
-          onChange={handleChange}
+          onChange={(event) =>{
+            console.log(event.target.files[0] )
+            // handleChange()
+            readQcode(event)
+          } }
           style={{ display: 'none' }}
         />
       </div>
