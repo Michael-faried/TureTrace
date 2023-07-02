@@ -9287,12 +9287,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x650618C5c33088f06F0e32397be9DFA5b757e5c5",
-      "transactionHash": "0x420743e29ad6e05815ece93be2359effbf6e1bf8fc645e944ba036a41fcbf223"
+      "address": "0x59BD1E7c2454dF4f07cf0f89e9476f2110370dBE",
+      "transactionHash": "0x72627a4a1b968ee123b4ed0479b8417e4946d06f6e4c2b35c665ee311521acbf"
     }
   },
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-07-01T23:36:03.322Z",
+  "updatedAt": "2023-07-02T13:49:02.443Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

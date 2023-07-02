@@ -1,5 +1,4 @@
 .land-hero-container {
-  background: url('../../backgrounds/back3.png') center center/cover no-repeat;
   height: 100vh;
   width: 100%;
   color: #ffff;
@@ -9,6 +8,19 @@
   align-items: center;
   justify-content: center;
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.land-hero-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
 .land-hero-container h1 {
@@ -35,6 +47,34 @@
 
 .fa-play-circle {
   margin-left: 4px;
+}
+
+.dummy-text {
+  font-size: 18px; /* Adjusted font size */
+  margin-top: 6px; /* Reduced margin */
+  white-space: pre-wrap; 
+}
+
+.product-result-container {
+  text-align: center;
+  margin-top: 20px; /* Reduced margin */
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+}
+
+.authentic-product-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px; /* Reduced margin */
+}
+
+.authentic-product-image {
+  height: 30vh;
+  object-fit: contain;
+  margin-bottom: 6px; /* Reduced margin */
+  max-width: 50%;
+  margin-right: 10px;
 }
 
 @media screen and (max-width: 960px) {
@@ -64,26 +104,4 @@
   }
 }
 
-.product-result-container {
-  text-align: center;
-  margin-top: 20px; /* Reduced margin */
-}
 
-.authentic-product-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px; /* Reduced margin */
-}
-
-.authentic-product-image {
-  height: 30vh;
-  max-width: 80%;
-  object-fit: contain;
-  margin-bottom: 6px; /* Reduced margin */
-}
-
-.dummy-text {
-  font-size: 18px; /* Adjusted font size */
-  margin-top: 6px; /* Reduced margin */
-}
