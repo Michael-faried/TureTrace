@@ -117,8 +117,7 @@ export async function verify(product_add){
     {
         await init();
     }
-    console.log(Smartcontract.methods.verify_product(product_add).call());
-    //console.log(smartcontract.methods.verify_product("0xb0db4f775c91d016921367c0649ad6d581d2d8bda8b27048f05f6d1c21b2dc4d").call());
+    //console.log(Smartcontract.methods.verify_product(product_add).call());
     return Smartcontract.methods.verify_product(product_add).call();
 }
 

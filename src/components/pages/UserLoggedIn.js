@@ -7,6 +7,7 @@ import { verify } from '../../web3Client';
 const UserLoggedIn = (props) => {
   const [qrvalue, setQrvalue] = useState('');
   const [state, setState] = useState('');
+  const [resstate, setResState] = useState('');
   const [isAuthentic, setIsAuthentic] = useState(false);
 
   // QR Code Read function
@@ -18,9 +19,20 @@ const UserLoggedIn = (props) => {
     QrScanner.scanImage(file, { returnDetailedScanResult: true })
       .then((result) => setQrvalue(result.data))
       .catch((e) => console.log(e));
-    verify(qrvalue).then((res) => {
-      setState(res);
-      setIsAuthentic(res === 0); // Update isAuthentic based on the verification result
+      verify(qrvalue).then((res) => {
+      if (res[0] != 0 && res[1]!="" && res[2]!="" && res[3]!="" && res[4]!="" && res[5]!="") 
+      {
+        setState(res);
+        setResState(res);
+        console.log("result: ",res);
+        setIsAuthentic(true); // Update isAuthentic based on the verification result
+      }
+      else
+      {
+        setState(res);
+        console.log("result: ",res);
+        setIsAuthentic(false);
+      }
     });
   };
 
@@ -62,8 +74,11 @@ const UserLoggedIn = (props) => {
           <h1>Product is {isAuthentic ? 'Authentic' : 'Fake'}</h1>
           {isAuthentic && (
             <div className='authentic-product-container'>
-              <img src="https://source.unsplash.com/random?wallpapers" alt='Authentic Product' className='authentic-product-image' />
-              <p className='dummy-text'>Dummy text for authentic product</p>
+              <img src={resstate[5]} alt='Authentic Product' className='authentic-product-image' />
+              <p className='dummy-text'>Product ID: {resstate[0]}</p>
+              <p className='dummy-text'>Product Name: {resstate[1]}</p>
+              <p className='dummy-text'>Product Model: {resstate[2]}</p>
+              <p className='dummy-text'>{resstate[3]}</p>
             </div>
           )}
         </div>

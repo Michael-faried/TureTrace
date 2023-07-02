@@ -27,13 +27,11 @@ function Upload() {
     Papa.parse(file, {
       header: true,
       complete: (results) => {
-        const dataArray = results.data.map((row) => Object.values(row));
-        setCSVData(dataArray);
-        setShowQrScreen(true); // Show the QR screen when CSV is uploaded
-
+        
         const hashedArray = [];
         const promises = [];
         
+        const dataArray = results.data.map((row) => Object.values(row));
         for (let i = 0; i < 5; i++) {
           UploadProducts_send(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]).then((res) => {})
           const promise = UploadProducts_call(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]);
@@ -48,22 +46,9 @@ function Upload() {
           
           console.log(hashedArray);
         });
+        setCSVData(hashedArray);
+        setShowQrScreen(true); // Show the QR screen when CSV is uploaded
 
-
-        // const hashedArray = []; 
-        // for(let i =0; i<5; i++)
-        // {
-        //   UploadProducts_send(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]).then((res) => {})
-        //   UploadProducts_call(dataArray[i][0],dataArray[i][1],dataArray[i][2],dataArray[i][3],companyName,dataArray[i][4]).then((res) => {
-        //     hashedArray.push(res);
-        //     console.log(res);
-        //   })
-
-        // }
-        // console.log(hashedArray[0]);
-        // for (let i = 0; i < hashedArray.length; i++) {
-        //   console.log(hashedArray[i]);
-        // }
       },
       error: (error) => {
         console.error('Error parsing CSV file:', error);
@@ -75,7 +60,7 @@ function Upload() {
     const zip = new JSZip();
 
     for (let i = 0; i < csvData.length; i++) {
-      const text = csvData[i][0];
+      const text = csvData[i];
 
       const canvas = document.createElement('canvas');
       await QRCode.toDataURL(text, { width: 256, height: 256 })
