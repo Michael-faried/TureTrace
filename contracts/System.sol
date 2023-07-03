@@ -54,6 +54,7 @@ contract System {
 
     function register_Company(address _compaddress,string memory _name, string memory _email, string memory _password,uint256 _cert_num) public {
         companies[_compaddress] = Company(_name,_email,_password,_cert_num);
+        companyAddresses.push(_compaddress);
     }
 
     function login_user (string memory user_add , string memory _name , string memory _password) public view returns (bool found)

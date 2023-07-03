@@ -36,7 +36,6 @@ function App() {
           <Route path='/company-sign-up' element={<CompanySignUp/>} />
           <Route path='/uploadcsv' element={<CSVUploader/>} />
           <Route path='/userreport' element={<UserReport/>} />
-
         </Routes>
       </Router>
     </>

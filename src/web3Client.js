@@ -135,11 +135,13 @@ export async function send_report(location,description,companyname){
     return Smartcontract.methods.send_report("http//:123",location,description,companyname).send({from:selectedAccount});
 }
 
+
 export async function get_companies_names(){
     if(!is_initialized)
     {
         await init();
     }
-    return Smartcontract.methods.get_companies_names().call();
+    const allCompanies = await Smartcontract.methods.get_companies_names().call();
+    return allCompanies;
 }
 

@@ -1,12 +1,29 @@
 import React, { useState } from "react";
+import { init,get_companies_names, send_report} from '../../web3Client';
 import './UserReport.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const UserReport = (props) => {
   const [productDesc, setProductDesc] = useState('');
   const [productLocation, setProductLocation] = useState('');
   const [selectedCompany, setSelectedCompany] = useState('');
+  const [companiesArray, setCompaniesArray] = useState([]);
 
-  const companies = ['Company A', 'Company B', 'Company C']; // Array of companies
+  const navigate = useNavigate();
+
+  function fetchData(callback) {
+    get_companies_names()
+    .then((res) => {
+      setCompaniesArray(res); // Update the state with the data
+    })
+    .catch((error) => {
+      console.error('Error fetching companies:', error);
+    });
+  }
+  
+  fetchData();
+  
 
   const handleCompanyChange = (event) => {
     setSelectedCompany(event.target.value);
@@ -15,9 +32,11 @@ const UserReport = (props) => {
   const submitUpload = () => {
     // Handle form submission here
     console.log('Submitted!');
-    console.log('Selected Company:', selectedCompany);
-    console.log('Product Location:', productLocation);
-    console.log('Product Description:', productDesc);
+    // console.log('Selected Company:', selectedCompany);
+    // console.log('Product Location:', productLocation);
+    // console.log('Product Description:', productDesc);
+    send_report(productLocation,productDesc,selectedCompany);
+    navigate('/loggedin');
   };
 
   return (
@@ -27,7 +46,7 @@ const UserReport = (props) => {
         <h1 style={{ color: "white"}}>Report Fake Product</h1>
         <select value={selectedCompany} onChange={handleCompanyChange} className="mySelect">
           <option value="">Select a company</option>
-          {companies.map((company, index) => (
+          {companiesArray.map((company, index) => (
             <option key={index} value={company}>
               {company}
             </option>
@@ -45,7 +64,7 @@ const UserReport = (props) => {
           placeholder="Enter product description"
           style={{ height: "150px" }}
         ></textarea>
-        <button onClick={submitUpload} className="btn" style={{ margin: "0 auto" }}>Report</button>
+        <button onClick={submitUpload} className="user-report-btn" style={{ margin: "0 auto" }}>Report</button>
       </div>
     </div>
   );

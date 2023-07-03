@@ -54,7 +54,7 @@
   margin-top: 16px;
 }
 
-.btn {
+.user-report-btn{
   background-color: rgb(136, 170, 200);
   color: #ffffff;
   border: none;
@@ -67,7 +67,7 @@
   cursor: pointer;
 }
 
-.btn:hover {
+.user-report-btn:hover {
   background-color: rgb(114, 146, 173);
 }
 
