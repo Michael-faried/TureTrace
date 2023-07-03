@@ -125,7 +125,7 @@ class SignUp extends Component {
               <Button>CREATE</Button>
               <SignUpLink to="/user-login">ALREADY HAVE AN ACCOUNT?</SignUpLink>
             </Form>
-            {this.state.redirect ? <Navigate to="/landing" /> : null}
+            {this.state.redirect ? <Navigate to="/user-login" /> : null}
           </Wrapper>
         </Container>
       </Background>

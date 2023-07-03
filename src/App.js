@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import Navbar from './components/Navbar';
 import './App.css';
 import Home from './components/pages/Home';
@@ -15,9 +15,13 @@ import Login from './components/pages/Login';
 import CompanyLogin from './components/pages/CompanyLogin';
 import CSVUploader from './components/pages/UploadCSV';
 import UserReport from './components/pages/UserReport';
+import { init } from "./web3Client";
 
 
 function App() {
+  useEffect(() => {
+    init();
+  }, []);
   return (
     <>
       <Router>
