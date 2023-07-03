@@ -40,7 +40,7 @@ contract System {
     mapping(address => Company) companies;
     address[] private companyAddresses;
     
-    mapping(bytes32 => Product) public products;
+    mapping(bytes32 => Product) private products;
     mapping(string => bytes32[]) private companyProducts;
     mapping(string => Report[]) private companyReports;
 
@@ -98,7 +98,7 @@ contract System {
 }
     
         // Get a Product by its Hash
-    function get_product(bytes32 product_add) public view returns (Product memory Prod) {
+    function get_product(bytes32 product_add) internal view returns (Product memory Prod) {
         return products[product_add];
     }
 
@@ -134,7 +134,7 @@ contract System {
         Report memory report = Report(location,description);
         companyReports[companyname].push(report);
     }
-    
+
     function get_companies_names() public view returns(string[] memory)
     {
         uint256 length = companyAddresses.length;
