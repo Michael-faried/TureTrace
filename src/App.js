@@ -16,6 +16,7 @@ import CompanyLogin from './components/pages/CompanyLogin';
 import CSVUploader from './components/pages/UploadCSV';
 import UserReport from './components/pages/UserReport';
 import { init } from "./web3Client";
+import ReportedProducts from "./components/pages/ReportedProducts";
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
           <Route path='/company-sign-up' element={<CompanySignUp/>} />
           <Route path='/uploadcsv' element={<CSVUploader/>} />
           <Route path='/userreport' element={<UserReport/>} />
+          <Route path='/reported-products' element={<ReportedProducts/>} />
+
         </Routes>
       </Router>
     </>
