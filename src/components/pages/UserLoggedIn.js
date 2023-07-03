@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Button } from '../Button';
 import '../pages/UserLoggedIn.css';
 import QrScanner from 'qr-scanner';
 import { verify, init } from '../../web3Client';
 import { useNavigate } from 'react-router-dom';
+import QrScannerComponent from './QrScannerComponent';
 
 
 const UserLoggedIn = (props) => {
-
   useEffect(() => {
     // Initialize web3 when the component mounts
     init();
@@ -19,24 +19,17 @@ const UserLoggedIn = (props) => {
   const [resstate, setResState] = useState('');
   const [isAuthentic, setIsAuthentic] = useState(false);
   const [showReportButton, setShowReportButton] = useState(true);
+  const hiddenFileInput = useRef(null);
 
-  // Create a reference to the hidden file input element
-  const hiddenFileInput = React.useRef(null);
-
-  // Programatically click the hidden file input element
-  // when the Button component is clicked
   const handleClick = (event) => {
-    setState('')
+    setState('');
     hiddenFileInput.current.click();
   };
 
-  // Call a function (passed as a prop from the parent component)
-  // to handle the user-selected file
   const handleChange = (event) => {
     readQcode(event);
   };
 
-  // QR Code Read function
   const readQcode = (e) => {
     const file = e.target.files[0];
     console.log(file);
@@ -58,10 +51,8 @@ const UserLoggedIn = (props) => {
             // setShowReportButton(true); // Show the report button if the product is fake
           }
         });
-
       })
       .catch((e) => console.log(e));
-
   };
 
   const handleReport = () => {
@@ -75,26 +66,20 @@ const UserLoggedIn = (props) => {
     <div className='land-hero-container'>
       <video src='/videos/video.mp4' autoPlay loop muted />
       <h1>SCAN PRODUCT TO BEGIN</h1>
-      <div className='hero-btns'>
-        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large' onClick={handleClick}>
-          UPLOAD QR CODE HERE
-        </Button>
-        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large' onClick={handleReport}>
-          REPORT FAKE PRODUCT
-        </Button>
-        <input
-          type='file'
-          accept='image/*'
-          ref={hiddenFileInput}
-          onChange={(event) =>{
-            console.log(event.target.files[0] )
-            // handleChange()
-            readQcode(event)
-          } }
-          style={{ display: 'none' }}
-        />
+      <div className='hero-btn-container'>
+        <div className='hero-btns'>
+          <button className='btn btn--outline btn--large' onClick={handleClick}>
+            UPLOAD QR CODE HERE
+          </button>
+          <button className='btn btn--outline btn--large' onClick={handleReport}>
+            REPORT FAKE PRODUCT
+          </button>
+        </div>
+        {!state && <QrScannerComponent />}
       </div>
-      {state !== '' && (
+      <input type='file' accept='image/*' ref={hiddenFileInput} onChange={handleChange} style={{ display: 'none' }} />
+  
+      {state && (
         <div className='product-result-container'>
           <h1>Product is {isAuthentic ? 'Authentic' : 'Fake'}</h1>
           {isAuthentic && (
@@ -106,17 +91,11 @@ const UserLoggedIn = (props) => {
               <p className='dummy-text'>{resstate[3]}</p>
             </div>
           )}
-          {/* {!isAuthentic && showReportButton && (
-            <div className='report-button-container'>
-              <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large' onClick={handleReport}>
-                REPORT FAKE PRODUCT
-              </Button>
-            </div>
-          )} */}
         </div>
       )}
     </div>
   );
+  
 };
 
 export default UserLoggedIn;
