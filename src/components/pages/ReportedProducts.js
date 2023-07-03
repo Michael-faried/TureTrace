@@ -3,32 +3,8 @@ import { get_function_report } from "../../web3Client";
 
 const ReportedProducts = () => {
   const [reportedProducts, setReportedProducts] = useState([]);
-  // const reportedProducts = [
-  //   {
-  //     id: 1,
-  //     productName: "Product 1",
-  //     company: "Company A",
-  //     location: "Location A",
-  //     description: "Description A",
-  //   },
-  //   {
-  //     id: 2,
-  //     productName: "Product 2",
-  //     company: "Company B",
-  //     location: "Location B",
-  //     description: "Description B",
-  //   },
-  //   {
-  //     id: 3,
-  //     productName: "Product 3",
-  //     company: "Company C",
-  //     location: "Location C",
-  //     description: "Description C",
-  //   },
-  // ];
+  const companyName2 = localStorage.getItem("companyName");
 
-  const companyName2=localStorage.getItem("companyName")
-  
   useEffect(() => {
     fetchReportedProducts();
   }, []);
@@ -43,20 +19,22 @@ const ReportedProducts = () => {
       });
   };
 
+  const handleDelete = (index) => {
+    // Dummy functionality for delete
+    const updatedProducts = [...reportedProducts];
+    updatedProducts.splice(index, 1);
+    setReportedProducts(updatedProducts);
+  };
 
   return (
     <div style={{ padding: "20px" }}>
-    <video src='/videos/video.mp4' autoPlay loop muted />
-    <h1 style={{ textAlign: "center", marginBottom: "20px", color:"#FFFFFF" }}>
-      {companyName2}</h1>
-      <h1 style={{ textAlign: "center", marginBottom: "20px", color:"#FFFFFF" }}>
-        Reported Products
-      </h1>
+      <video src="/videos/video.mp4" autoPlay loop muted />
+      <h1 style={{ textAlign: "center", marginBottom: "20px", color: "#FFFFFF" }}>{companyName2}</h1>
+      <h1 style={{ textAlign: "center", marginBottom: "20px", color: "#FFFFFF" }}>Reported Products</h1>
       {reportedProducts.length === 0 ? (
         <p style={{ textAlign: "center" }}>No reported products found.</p>
       ) : (
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {console.log("reportedProducts",reportedProducts)}
           {reportedProducts.map((product, index) => (
             <div
               key={index}
@@ -67,6 +45,7 @@ const ReportedProducts = () => {
                 padding: "10px",
                 margin: "10px",
                 flex: "1 0 300px",
+                position: "relative",
               }}
             >
               <h3>Report #{index + 1}</h3>
@@ -76,6 +55,21 @@ const ReportedProducts = () => {
               <p>
                 <strong>Report Description:</strong> {product.description}
               </p>
+              <button
+                style={{
+                  backgroundColor: "red",
+                  color: "white",
+                  marginTop: "10px",
+                  position: "absolute",
+                  bottom: "10px",
+                  left: "10px",
+                  padding: "8px 16px", // Adjust padding to make the button slightly smaller
+                  borderRadius: "3px", // Adjust borderRadius to make the button slightly smaller
+                }}
+                onClick={() => handleDelete(index)}
+              >
+                Delete
+              </button>
             </div>
           ))}
         </div>
