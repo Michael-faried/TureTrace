@@ -43,7 +43,7 @@ function Navbar() {
   const ReportsButtonShown = ['/upload', '/products'];
   const shouldShowReportsButton = ReportsButtonShown.includes(location.pathname);
   const shouldShowUploadButton = location.pathname === '/products';
-  const shouldShowCompanyNameButton = location.pathname === '/reported-products';
+  const shouldShowCompanyNameButton = location.pathname === '/products' || location.pathname === '/upload';
 
   return (
     <>

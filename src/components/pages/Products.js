@@ -50,12 +50,20 @@ export default function Products() {
       <CssBaseline />
       <Box
         sx={{
-          backgroundImage: `url(${image})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
         }}
       >
-        <Box sx={{ pt: 6 }}>
+        <Box
+          sx={{
+            backgroundImage: `url(${image})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            flex: '1',
+            pt: 6,
+          }}
+        >
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="text.primary">
               {companyName2}
@@ -65,62 +73,65 @@ export default function Products() {
             </Typography>
             <Stack sx={{ pt: 4 }} direction="row" spacing={2} justifyContent="center" />
           </Container>
+
+          <Container sx={{ py: 4, maxWidth: 'md' }}>
+            <Grid container spacing={4} justifyContent="center">
+              {groupedProducts.map((product) => (
+                <Grid item key={product.id} xs={12} sm={6} md={4}>
+                  <Card
+                    sx={{
+                      height: '500px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      overflow: 'auto',
+                    }}
+                  >
+                    <CardMedia
+                      component="div"
+                      sx={{
+                        pt: '52.25%',
+                      }}
+                      image={product.imageLink}
+                    />
+                    <CardContent sx={{ flexGrow: 1, pb: 0 }}>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {product.name}
+                      </Typography>
+                      <Typography variant="body2" sx={{ pt: 2, pb: 0 }}>
+                        {product.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        {product.count > 1 ? `Count: ${product.count}` : ''}
+                      </Typography>
+                      <Button size="small" sx={{ color: 'red' }}>
+                        Delete
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
         </Box>
 
-        <Container sx={{ py: 4, maxWidth: 'md' }}>
-          <Grid container spacing={4} justifyContent="center">
-            {groupedProducts.map((product) => (
-              <Grid item key={product.id} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{
-                    height: '500px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    overflow: 'auto', // Enable vertical scrollbar if needed
-                  }}
-                >
-                  <CardMedia
-                    component="div"
-                    sx={{
-                      // 16:9
-                      pt: '52.25%',
-                    }}
-                    image={product.imageLink}
-                  />
-                  <CardContent sx={{ flexGrow: 1, pb: 0 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {product.name}
-                    </Typography>
-                    <Typography variant="body2" sx={{ pt: 2, pb: 0 }}>
-                      {product.description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      {product.count > 1 ? `Count: ${product.count}` : ''}
-                    </Typography>
-                    <Button size="small" sx={{ color: 'red' }}>
-                      Delete
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+        <Box
+          sx={{ bgcolor: 'black', p: 4 }}
+          component="footer"
+          mt="auto" // Push the footer to the bottom
+        >
+          <Typography variant="h6" align="center" gutterBottom color="white">
+            TrueTrace
+          </Typography>
+          <Typography variant="subtitle1" align="center" color="white" component="p">
+            All Rights Reserved by&nbsp;
+            <br />
+            Philip Wagih, Michael Farid, Kermina Ashraf, Mario Mamdouh, Michael Medhat
+          </Typography>
+        </Box>
       </Box>
-
-      <Box sx={{ bgcolor: 'black', p: 4 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom color="white">
-          TrueTrace 
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="white" component="p">
-          All Rights Reserved by  Copyright © 2023 
-          <br></br>
-          Philip Wagih, Michael Farid, Kermina Ashraf, Mario Mamdouh, Michael Medhat
-        </Typography>
-      </Box>
-
     </ThemeProvider>
   );
 }
+
