@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import logo from '../backgrounds/logo.png';
 
-
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,20 +38,21 @@ function Navbar() {
 
   window.addEventListener('resize', showButton);
 
-  const BusinesshiddenPages = ['/upload', '/products', '/userreport']; // Add specific page paths here
+  const BusinesshiddenPages = ['/upload', '/products', '/userreport', '/reported-products']; // Add specific page paths here
   const shouldShowBusinessesButton = !BusinesshiddenPages.includes(location.pathname);
   const ReportsButtonShown = ['/upload', '/products'];
   const shouldShowReportsButton = ReportsButtonShown.includes(location.pathname);
   const shouldShowUploadButton = location.pathname === '/products';
+  const shouldShowCompanyNameButton = location.pathname === '/reported-products';
 
   return (
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-        <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-          <img src={logo} alt='Logo' className='logo-image' />
-          TrueTrace
-        </Link>
+          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+            <img src={logo} alt='Logo' className='logo-image' />
+            TrueTrace
+          </Link>
           <div className='menu-icon' onClick={handleClick}>
             <FontAwesomeIcon icon={click ? faTimes : faBars} />
           </div>
@@ -71,7 +71,7 @@ function Navbar() {
             )}
             {shouldShowReportsButton && (
               <li className='nav-item'>
-                <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                <Link to='/reported-products' className='nav-links' onClick={closeMobileMenu}>
                   Reports
                 </Link>
               </li>
@@ -79,7 +79,14 @@ function Navbar() {
             {shouldShowUploadButton && (
               <li className='nav-item'>
                 <Link to='/upload' className='nav-links' onClick={closeMobileMenu}>
-                 Upload Products
+                  Upload Products
+                </Link>
+              </li>
+            )}
+            {shouldShowCompanyNameButton && (
+              <li className='nav-item'>
+                <Link to='/products' className='nav-links' onClick={closeMobileMenu}>
+                  {companyName}
                 </Link>
               </li>
             )}
