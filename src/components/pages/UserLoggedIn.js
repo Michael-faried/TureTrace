@@ -18,7 +18,7 @@ const UserLoggedIn = (props) => {
   const [state, setState] = useState('');
   const [resstate, setResState] = useState('');
   const [isAuthentic, setIsAuthentic] = useState(false);
-  const [showReportButton, setShowReportButton] = useState(false);
+  const [showReportButton, setShowReportButton] = useState(true);
 
   // Create a reference to the hidden file input element
   const hiddenFileInput = React.useRef(null);
@@ -26,6 +26,7 @@ const UserLoggedIn = (props) => {
   // Programatically click the hidden file input element
   // when the Button component is clicked
   const handleClick = (event) => {
+    setState('')
     hiddenFileInput.current.click();
   };
 
@@ -54,7 +55,7 @@ const UserLoggedIn = (props) => {
           } else {
             setState(res);
             setIsAuthentic(false);
-            setShowReportButton(true); // Show the report button if the product is fake
+            // setShowReportButton(true); // Show the report button if the product is fake
           }
         });
 
@@ -64,7 +65,7 @@ const UserLoggedIn = (props) => {
   };
 
   const handleReport = () => {
-    navigate('/userreport'); // Navigate to the "products" page
+    navigate('/userreport'); // Navigate to the "reports" page
   };
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -77,6 +78,9 @@ const UserLoggedIn = (props) => {
       <div className='hero-btns'>
         <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large' onClick={handleClick}>
           UPLOAD QR CODE
+        </Button>
+        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large' onClick={handleReport}>
+          REPORT FAKE PRODUCT
         </Button>
         <input
           type='file'
@@ -102,13 +106,13 @@ const UserLoggedIn = (props) => {
               <p className='dummy-text'>{resstate[3]}</p>
             </div>
           )}
-          {!isAuthentic && showReportButton && (
+          {/* {!isAuthentic && showReportButton && (
             <div className='report-button-container'>
               <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large' onClick={handleReport}>
                 REPORT FAKE PRODUCT
               </Button>
             </div>
-          )}
+          )} */}
         </div>
       )}
     </div>
