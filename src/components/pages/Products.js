@@ -26,6 +26,7 @@ export default function Products() {
   useEffect(() => {
     retrieve_company_products(companyName2)
       .then((result) => {
+        console.log("hiiiii phipo");
         console.log('Retrieved products:', result);
         setProducts(result);
       })

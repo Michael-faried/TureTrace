@@ -184,3 +184,11 @@ export async function delete_allReport(Company_name){
     }
     return Smartcontract.methods.delete_allReport(Company_name).send({from:selectedAccount});
 }
+
+export async function deleteProductByModel(companyname,model){
+    if(!is_initialized)
+    {
+        await init();
+    }
+    return Smartcontract.methods.deleteProductByModel(companyname,model).send({from:selectedAccount});
+}
