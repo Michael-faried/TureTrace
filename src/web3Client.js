@@ -192,3 +192,5 @@ export async function deleteProductByModel(companyname,model){
     }
     return Smartcontract.methods.deleteProductByModel(companyname,model).send({from:selectedAccount});
 }
+
+
