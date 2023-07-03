@@ -77,7 +77,7 @@ const UserLoggedIn = (props) => {
       <h1>SCAN PRODUCT TO BEGIN</h1>
       <div className='hero-btns'>
         <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large' onClick={handleClick}>
-          UPLOAD QR CODE
+          UPLOAD QR CODE HERE
         </Button>
         <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large' onClick={handleReport}>
           REPORT FAKE PRODUCT

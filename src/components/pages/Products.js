@@ -110,14 +110,17 @@ export default function Products() {
         </Container>
       </Box>
 
-      <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
+      <Box sx={{ bgcolor: 'black', p: 4 }} component="footer">
+        <Typography variant="h6" align="center" gutterBottom color="white">
+          TrueTrace 
         </Typography>
-        <Typography variant="subtitle1" align="center" color="text.secondary" component="p">
-          Something here to give the footer a purpose!
+        <Typography variant="subtitle1" align="center" color="white" component="p">
+          All Rights Reserved by  Copyright © 2023 
+          <br></br>
+          Philip Wagih, Michael Farid, Kermina Ashraf, Mario Mamdouh, Michael Medhat
         </Typography>
       </Box>
+
     </ThemeProvider>
   );
 }
