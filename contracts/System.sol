@@ -102,7 +102,7 @@ contract System {
         return products[product_add];
     }
 
-    function retrieve_company_products(string memory Company_name) public onlyCompany() view returns (Product[] memory products_array) {
+    function retrieve_company_products(string memory Company_name) public view returns (Product[] memory products_array) {
         bytes32[] memory products_hashes = companyProducts[Company_name];
         Product[] memory products_of_company = new Product[](products_hashes.length);
         for (uint256 index = 0; index < products_hashes.length; index++) {
@@ -170,6 +170,42 @@ contract System {
     }
     
 
+    function deleteProductByModel(string memory companyname, string memory model) public {
+        bytes32[] memory keysToDelete = new bytes32[](companyProducts[companyname].length);
+        uint256 deleteCount = 0;
+
+        // Identify the keys of the products to delete
+        for (uint256 i = 0; i < companyProducts[companyname].length; i++) {
+            bytes32 productKey = companyProducts[companyname][i];
+            if (keccak256(abi.encodePacked(products[productKey].model)) == keccak256(abi.encodePacked(model))) {
+                keysToDelete[deleteCount] = productKey;
+                deleteCount++;
+            }
+        }
+
+        // Delete the identified products from the mappings
+        for (uint256 i = 0; i < deleteCount; i++) {
+            delete products[keysToDelete[i]];
+
+            // Delete the product hash from the companyProducts mapping
+            uint256 index = findIndex(companyProducts[companyname], keysToDelete[i]);
+            if (index < companyProducts[companyname].length - 1) {
+                companyProducts[companyname][index] = companyProducts[companyname][companyProducts[companyname].length - 1];
+            }
+            companyProducts[companyname].pop();
+        }
+    }
+
+
+    // Helper function to find the index of an element in an array
+    function findIndex(bytes32[] memory array, bytes32 element) private pure returns (uint256) {
+        for (uint256 i = 0; i < array.length; i++) {
+            if (array[i] == element) {
+                return i;
+            }
+        }
+        return array.length;
+    }
 
     //----------------modifers------------
 
