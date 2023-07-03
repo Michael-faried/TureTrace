@@ -39,7 +39,7 @@ function Navbar() {
 
   window.addEventListener('resize', showButton);
 
-  const BusinesshiddenPages = ['/upload', '/products']; // Add specific page paths here
+  const BusinesshiddenPages = ['/upload', '/products', '/userreport']; // Add specific page paths here
   const shouldShowBusinessesButton = !BusinesshiddenPages.includes(location.pathname);
   const ReportsButtonShown = ['/upload', '/products'];
   const shouldShowReportsButton = ReportsButtonShown.includes(location.pathname);

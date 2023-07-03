@@ -7,8 +7,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(8px); /* Apply backdrop blur */
-  z-index: 9999; /* Set a high z-index to ensure it appears above other content */
 }
 
 .user-report-inner {
@@ -22,6 +20,13 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background-color: rgba(0, 0, 0, 0.8); /* Add a transparent background with reduced opacity */
 }
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 
 .user-report-inner h1 {
   font-weight: bold;
