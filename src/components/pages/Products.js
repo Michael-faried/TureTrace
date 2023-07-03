@@ -11,10 +11,10 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { useContext } from 'react';
 import { CompanyContext } from '../CompanyContext';
-import { retrieve_company_products } from '../../web3Client';
+import { retrieve_company_products,deleteProductByModel } from '../../web3Client';
 import image from '../../backgrounds/back1.png';
 
 const defaultTheme = createTheme();
@@ -23,10 +23,13 @@ export default function Products() {
   const [products, setProducts] = useState([]);
   const companyName2 = localStorage.getItem('companyName');
 
+
+  const navigate = useNavigate(); 
+
   useEffect(() => {
+    navigate('/products');
     retrieve_company_products(companyName2)
       .then((result) => {
-        console.log("hiiiii phipo");
         console.log('Retrieved products:', result);
         setProducts(result);
       })
@@ -45,6 +48,18 @@ export default function Products() {
     }
     return accumulator;
   }, []);
+
+
+  const handleDelete = (product) => {
+    deleteProductByModel(companyName2, product.model)
+      .then(() => {
+        const updatedProducts = products.filter((p) => p.model !== product.model);
+        setProducts(updatedProducts);
+      })
+      .catch((error) => {
+        console.error('Error deleting product:', error);
+      });
+  };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -106,7 +121,7 @@ export default function Products() {
                       <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                         {product.count > 1 ? `Count: ${product.count}` : ''}
                       </Typography>
-                      <Button size="small" sx={{ color: 'red' }}>
+                      <Button size="small" sx={{ color: 'red' }} onClick={() => handleDelete(product)}>
                         Delete
                       </Button>
                     </CardActions>

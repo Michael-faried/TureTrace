@@ -27,6 +27,7 @@ function Navbar() {
 
   useEffect(() => {
     const storedCompanyName = localStorage.getItem('companyName');
+    console.log(companyName)
     if (storedCompanyName) {
       setCompanyName(storedCompanyName);
     }
