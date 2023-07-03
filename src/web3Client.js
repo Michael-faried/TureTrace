@@ -145,3 +145,26 @@ export async function get_companies_names(){
     return allCompanies;
 }
 
+// export async function retrieve_company_products(Company_name){
+//     if(!is_initialized)
+//     {
+//         await init();
+//     }
+//     return Smartcontract.methods.retrieve_company_products(Company_name).send({from:selectedAccount});
+// }
+
+export async function retrieve_company_products(Company_name){
+    if(!is_initialized)
+    {
+        await init();
+    }
+    return Smartcontract.methods.retrieve_company_products(Company_name).call();
+}
+
+export async function get_function_report(Company_name){
+    if(!is_initialized)
+    {
+        await init();
+    }
+    return Smartcontract.methods.get_function_report(Company_name).call();
+}
