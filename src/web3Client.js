@@ -168,3 +168,19 @@ export async function get_function_report(Company_name){
     }
     return Smartcontract.methods.get_function_report(Company_name).call();
 }
+
+export async function deleteReport(Company_name,index){
+    if(!is_initialized)
+    {
+        await init();
+    }
+    return Smartcontract.methods.deleteReport(Company_name,index).send({from:selectedAccount});
+}
+
+export async function delete_allReport(Company_name,index){
+    if(!is_initialized)
+    {
+        await init();
+    }
+    return Smartcontract.methods.delete_allReport(Company_name,index).send({from:selectedAccount});
+}

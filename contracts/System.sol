@@ -153,6 +153,23 @@ contract System {
         return reports_of_company;
     }
 
+    function deleteReport(string memory companyname, uint index) public onlyCompany() {
+        require(index < companyReports[companyname].length, "Invalid index");
+
+        // Move the last element to the index being deleted
+        companyReports[companyname][index] = companyReports[companyname][companyReports[companyname].length - 1];
+
+        // Remove the last element
+        companyReports[companyname].pop();
+    }
+    
+    function delete_allReport(string memory companyname) public onlyCompany() {
+    
+    // Remove the last element
+    delete companyReports[companyname];
+    }
+    
+
 
     //----------------modifers------------
 
