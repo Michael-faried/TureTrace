@@ -133,7 +133,6 @@ contract System {
     {
         Report memory report = Report(linkimage,location,description);
         companyReports[companyname].push(report);
-        return description;
     }
     function get_companies_names() public view returns(string[] memory)
     {
