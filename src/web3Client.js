@@ -132,7 +132,7 @@ export async function send_report(location,description,companyname){
     {
         await init();
     }
-    return Smartcontract.methods.send_report("http//:123",location,description,companyname).send({from:selectedAccount});
+    return Smartcontract.methods.send_report(location,description,companyname).send({from:selectedAccount});
 }
 
 
