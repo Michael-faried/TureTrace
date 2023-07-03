@@ -29,7 +29,7 @@ contract System {
     }
 
     struct Report {
-        string imageLink;
+        // string imageLink;
         string Location;
         string description;
     }
@@ -129,11 +129,12 @@ contract System {
     }
 
 
-    function send_report(string memory linkimage, string memory location, string memory  description,string memory companyname) public returns (string memory desc)
+    function send_report(string memory location, string memory  description,string memory companyname) public
     {
-        Report memory report = Report(linkimage,location,description);
+        Report memory report = Report(location,description);
         companyReports[companyname].push(report);
     }
+    
     function get_companies_names() public view returns(string[] memory)
     {
         uint256 length = companyAddresses.length;
