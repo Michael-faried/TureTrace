@@ -36,6 +36,15 @@ const ReportedProducts = () => {
     navigate('/reported-products');
   };
 
+  const handleDownload = () => {
+    const textToSave = reportedProducts.map((product) => `Report Location: ${product.Location}\nReport Description: ${product.description}`).join('\n\n');
+    const hiddenElement = document.createElement('a');
+    hiddenElement.href = `data:text/plain;charset=utf-8,${encodeURIComponent(textToSave)}`;
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'reported-products.txt';
+    hiddenElement.click();
+  };
+
   return (
     <div style={{ padding: "20px" }}>
       <video
@@ -56,34 +65,59 @@ const ReportedProducts = () => {
 
       <h1 style={{ textAlign: "center", marginBottom: "20px", color: "#FFFFFF" }}>{companyName2}</h1>
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "20px" }}>
-  <h1 style={{ color: "#FFFFFF" }}>Reported Products</h1>
-  {reportedProducts.length > 0 && (
-    <button
-      style={{
-        backgroundColor: "transparent",
-        color: "red",
-        marginTop: "10px",
-        marginBottom: "10px",
-        padding: "12px 24px",
-        border: "none",
-        fontSize: "24px",
-        transition: "background-color 0.5s, color 0.5s",
-        marginLeft: "auto",
-      }}
-      onClick={handleDeleteAll}
-      onMouseOver={(e) => {
-        e.target.style.backgroundColor = "red";
-        e.target.style.color = "white";
-      }}
-      onMouseOut={(e) => {
-        e.target.style.backgroundColor = "transparent";
-        e.target.style.color = "red";
-      }}
-    >
-      Delete All
-    </button>
-  )}
-</div>
+        <h1 style={{ color: "#FFFFFF" }}>Reported Products</h1>
+        {reportedProducts.length > 0 && (
+          <>
+            <button
+              style={{
+                backgroundColor: "transparent",
+                color: "red",
+                marginTop: "10px",
+                marginBottom: "10px",
+                padding: "12px 24px",
+                border: "none",
+                fontSize: "24px",
+                transition: "background-color 0.5s, color 0.5s",
+                marginLeft: "auto",
+              }}
+              onClick={handleDeleteAll}
+              onMouseOver={(e) => {
+                e.target.style.backgroundColor = "red";
+                e.target.style.color = "white";
+              }}
+              onMouseOut={(e) => {
+                e.target.style.backgroundColor = "transparent";
+                e.target.style.color = "red";
+              }}
+            >
+              Delete All
+            </button>
+            <button
+              style={{
+                backgroundColor: "transparent",
+                color: "white",
+                marginTop: "10px",
+                marginBottom: "10px",
+                padding: "12px 24px",
+                border: "none",
+                fontSize: "24px",
+                transition: "background-color 0.5s, color 0.5s",
+              }}
+              onClick={handleDownload}
+              onMouseOver={(e) => {
+                e.target.style.backgroundColor = "#FFFFFF";
+                e.target.style.color = "red";
+              }}
+              onMouseOut={(e) => {
+                e.target.style.backgroundColor = "transparent";
+                e.target.style.color = "white";
+              }}
+            >
+              Download All Reports
+            </button>
+          </>
+        )}
+      </div>
 
       {reportedProducts.length === 0 ? (
         <p style={{ textAlign: "center", color: "#FFFFFF" }}>No reported products found.</p>
