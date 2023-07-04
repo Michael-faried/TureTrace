@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
 import { verify } from '../../web3Client';
-
+import "../pages/UserLoggedIn.css"
 const QRScannerComponent = () => {
   const [scannedResult, setScannedResult] = useState(null);
   const [isAuthentic, setIsAuthentic] = useState(false);
@@ -74,10 +74,12 @@ const QRScannerComponent = () => {
                 alt='Authentic Product'
                 className='authentic-product-image'
               />
-              <p className='dummy-text'>Product ID: {productData[0]}</p>
-              <p className='dummy-text'>Product Name: {productData[1]}</p>
-              <p className='dummy-text'>Product Model: {productData[2]}</p>
-              <p className='dummy-text'>{productData[3]}</p>
+              <div className='product-details'>
+                <p style={{ fontSize: '1.5rem' }}><strong>Product ID: </strong> {productData[0]}</p>
+                <p style={{ fontSize: '1.5rem' }}><strong>Product Name: </strong> {productData[1]}</p>
+                <p style={{ fontSize: '1.5rem' }} ><strong>Product Model: </strong> {productData[2]}</p>
+                <p style={{ fontSize: '0.9rem' }} >{productData[3]}</p>
+              </div>
             </div>
           )}
 
