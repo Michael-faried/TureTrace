@@ -27,7 +27,6 @@ function Navbar() {
 
   useEffect(() => {
     const storedCompanyName = localStorage.getItem('companyName');
-    console.log(companyName)
     if (storedCompanyName) {
       setCompanyName(storedCompanyName);
     }
@@ -44,7 +43,8 @@ function Navbar() {
   const ReportsButtonShown = ['/upload', '/products'];
   const shouldShowReportsButton = ReportsButtonShown.includes(location.pathname);
   const shouldShowUploadButton = location.pathname === '/products';
-  const shouldShowCompanyNameButton = location.pathname === '/products' || location.pathname === '/upload';
+  const shouldShowCompanyNameButton = location.pathname === '/reported-products' || location.pathname === '/upload';
+  const shouldShowLogoutButton = location.pathname !== '/';
 
   return (
     <>
@@ -58,11 +58,6 @@ function Navbar() {
             <FontAwesomeIcon icon={click ? faTimes : faBars} />
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-            <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                Home
-              </Link>
-            </li>
             {shouldShowBusinessesButton && (
               <li className='nav-item'>
                 <Link to='/company-login' className='nav-links' onClick={closeMobileMenu}>
@@ -87,7 +82,14 @@ function Navbar() {
             {shouldShowCompanyNameButton && (
               <li className='nav-item'>
                 <Link to='/products' className='nav-links' onClick={closeMobileMenu}>
-                  {companyName}
+                  Products
+                </Link>
+              </li>
+            )}
+            {shouldShowLogoutButton && (
+              <li className='nav-item'>
+                <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                  Logout
                 </Link>
               </li>
             )}
