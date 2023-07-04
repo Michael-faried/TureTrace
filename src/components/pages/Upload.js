@@ -22,6 +22,7 @@ function Upload() {
   }
 
   const [csvData, setCSVData] = useState([]);
+  const [uploadedFileName, setUploadedFileName] = useState('');
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -53,6 +54,7 @@ function Upload() {
         console.log(hashedArray);
 
         setCSVData(hashedArray);
+        setUploadedFileName(file.name);
         window.alert('CSV file uploaded successfully!'); // Display alert
       },
       error: (error) => {
@@ -121,9 +123,10 @@ function Upload() {
           <label className='btn btn--outline btn--large' htmlFor="fileUpload" style={{ height: '21px', marginRight: '10px' }}>
             Choose File
           </label>
+          <span>{uploadedFileName && `Uploaded File: ${uploadedFileName}`}</span>
           <Popup trigger={buttonPup} setTrigger={setButtonPup}></Popup>
           {csvData.length > 0 && (
-            <button style={{ height: '38px', marginRight: '10px' }} className='btn btn--outline btn--large' onClick={handleDownloadQRs}>
+            <button style={{ height: '38px', marginRight: '10px', marginTop: '15px' }} className='btn btn--outline btn--large' onClick={handleDownloadQRs}>
               Download QR Codes
             </button>
           )}
