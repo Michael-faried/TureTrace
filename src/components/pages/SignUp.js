@@ -14,12 +14,12 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 80%;
-  max-width: 400px;
-  padding: 20px;
-  background-color: white;
+width: 80%;
+max-width: 400px;
+padding: 20px;
+border-radius: 30px; /* set border radius to 10px */
+background-color: rgba(255, 255, 255, 0.9); /* set opacity to 0.5 */
 `;
-
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 500;
@@ -107,8 +107,9 @@ class SignUp extends Component {
 
   render() {
     return (
-      <Background>
         <Container>
+          <video src='/videos/login.mp4' autoPlay loop muted />
+
           <Wrapper>
             <Title>CREATE A USER ACCOUNT</Title>
             <Form onSubmit={this.handleSubmit}>
@@ -128,7 +129,6 @@ class SignUp extends Component {
             {this.state.redirect ? <Navigate to="/user-login" /> : null}
           </Wrapper>
         </Container>
-      </Background>
     );
   }
 }

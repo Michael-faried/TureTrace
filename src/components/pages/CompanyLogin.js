@@ -42,8 +42,8 @@ function CompanyLogin() {
   }
 
   return (
-    <Background>
       <Container>
+        <video src='/videos/login.mp4' autoPlay loop muted />
         <Wrapper>
           <Title>SIGN IN AS A BUSINESS</Title>
           <Form onSubmit={handleSubmit}>
@@ -54,7 +54,6 @@ function CompanyLogin() {
           </Form>
         </Wrapper>
       </Container>
-    </Background>
   );
 }
 
@@ -75,7 +74,8 @@ const Wrapper = styled.div`
 width: 80%;
 max-width: 400px;
 padding: 20px;
-background-color: white;
+border-radius: 30px; /* set border radius to 10px */
+background-color: rgba(255, 255, 255, 0.9); /* set opacity to 0.5 */
 `;
 
 const Title = styled.h1`

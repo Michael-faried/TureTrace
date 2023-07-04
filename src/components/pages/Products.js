@@ -15,7 +15,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { useContext } from 'react';
 import { CompanyContext } from '../CompanyContext';
 import { retrieve_company_products,deleteProductByModel } from '../../web3Client';
-import image from '../../backgrounds/back1.png';
+import video from '../../backgrounds/Company.mp4';
 
 const defaultTheme = createTheme();
 
@@ -71,9 +71,22 @@ export default function Products() {
           minHeight: '100vh',
         }}
       >
+        <video
+          autoPlay
+          loop
+          muted
+          style={{
+            position: 'fixed',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: '-1',
+          }}
+        >
+          <source src={video} type="video/mp4" />
+        </video>
         <Box
           sx={{
-            backgroundImage: `url(${image})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             flex: '1',
@@ -81,10 +94,11 @@ export default function Products() {
           }}
         >
           <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center" color="text.primary">
+
+            <Typography component="h1" variant="h2" align="center" color="white">
               {companyName2}
             </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
+            <Typography variant="h5" align="center" color="white" paragraph>
               Total Number of Products: {products.length}
             </Typography>
             <Stack sx={{ pt: 4 }} direction="row" spacing={2} justifyContent="center" />
@@ -153,4 +167,3 @@ export default function Products() {
     </ThemeProvider>
   );
 }
-

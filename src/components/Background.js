@@ -4,15 +4,8 @@ import { ImageBackground, StyleSheet, KeyboardAvoidingView, View } from 'react-n
 export default function Background({ children }) {
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require('../backgrounds/back1.png')}
-        //resizeMode="repeat"
-        style={styles.background}
-      >
-        <KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="padding">
-          {children}
-        </KeyboardAvoidingView>
-      </ImageBackground>
+            <video src='/videos/Login& Registertion.mp4' autoPlay loop muted />
+
     </View>
   )
 }
