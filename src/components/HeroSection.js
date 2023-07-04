@@ -21,31 +21,35 @@ function HeroSection() {
   };
 
   return (
-    <div className={`hero-container ${showVideo ? 'hide-header' : ''}`}>
-      {showVideo ? ( // conditionally render the video
-        <video src='/videos/scan_qr_animation.mp4' autoPlay loop muted />
-      ) : (
-        <video src='/videos/Company.mp4' autoPlay loop muted />
-      )}
+    <div className='hero-container'>
+      <div className='video-container'>
+        {showVideo ? ( // conditionally render the video
+          <video src='/videos/scan_qr_animation.mp4' autoPlay loop muted playsInline />
+        ) : (
+          <video src='/videos/Company.mp4' autoPlay loop muted playsInline />
+        )}
+      </div>
 
-      <h1>DECENTRALIZED PRODUCTS AUTHENTICATION</h1>
-      <div className='hero-btns'>
-        <Button
-          className='btns'
-          buttonStyle='btn--outline'
-          buttonSize='btn--large'
-          onClick={handleLearnMoreClick} // add click handler
-        >
-          LEARN MORE
-        </Button>
-        <Button
-          className='btns'
-          buttonStyle='btn--primary'
-          buttonSize='btn--large'
-          onClick={navigateToLogin}
-        >
-          GET STARTED 
-        </Button>
+      <div className='hero-content'>
+        <h1>DECENTRALIZED PRODUCT AUTHENTICATION</h1>
+        <div className='hero-btns'>
+          <Button
+            className='btns'
+            buttonStyle='btn--outline'
+            buttonSize='btn--large'
+            onClick={handleLearnMoreClick} // add click handler
+          >
+            LEARN MORE
+          </Button>
+          <Button
+            className='btns'
+            buttonStyle='btn--primary'
+            buttonSize='btn--large'
+            onClick={navigateToLogin}
+          >
+            GET STARTED
+          </Button>
+        </div>
       </div>
     </div>
   );

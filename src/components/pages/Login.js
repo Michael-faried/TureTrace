@@ -3,23 +3,31 @@ import styled from 'styled-components';
 import { login } from '../../web3Client';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
-import Background from '../Background';
 
 const Container = styled.div`
+  position: relative;
   width: 100vw;
   height: 100vh;
-  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
+const VideoBackground = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const Wrapper = styled.div`
-width: 80%;
-max-width: 400px;
-padding: 20px;
-border-radius: 30px; /* set border radius to 10px */
-background-color: rgba(255, 255, 255, 0.9); /* set opacity to 0.5 */
+  width: 80%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
 `;
 
 const Title = styled.h1`
@@ -86,21 +94,21 @@ class Login extends Component {
 
   render() {
     return (
-        <Container>
-          <video src='/videos/login.mp4' autoPlay loop muted />
-          <Wrapper>
-            <Title>SIGN IN AS A USER</Title>
-            <Form onSubmit={this.handleSubmit}>
-              <Input placeholder="username" name="username" onChange={this.handleChange} />
-              <Input type="password" placeholder="password" name="userpass" onChange={this.handleChange} />
-              <Button type="submit">LOGIN</Button>
-              <Link to="/sign-up" style={{ textAlign: 'center', color: 'teal', textDecoration: 'none' }}>
-                CREATE A NEW ACCOUNT
-              </Link>
-            </Form>
-            {this.state.redirect ? <Navigate to="/loggedin" /> : null}
-          </Wrapper>
-        </Container>
+      <Container>
+        <VideoBackground src='/videos/login.mp4' autoPlay loop muted />
+        <Wrapper>
+          <Title>SIGN IN AS A USER</Title>
+          <Form onSubmit={this.handleSubmit}>
+            <Input placeholder="username" name="username" onChange={this.handleChange} />
+            <Input type="password" placeholder="password" name="userpass" onChange={this.handleChange} />
+            <Button type="submit">LOGIN</Button>
+            <Link to="/sign-up" style={{ textAlign: 'center', color: 'teal', textDecoration: 'none' }}>
+              CREATE A NEW ACCOUNT
+            </Link>
+          </Form>
+          {this.state.redirect ? <Navigate to="/loggedin" /> : null}
+        </Wrapper>
+      </Container>
     );
   }
 }

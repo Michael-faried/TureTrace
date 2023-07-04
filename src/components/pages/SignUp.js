@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Background from '../Background';
 import { register } from '../../web3Client';
 import { Navigate, Link } from 'react-router-dom';
 
 const Container = styled.div`
+  position: relative;
   width: 100vw;
   height: 100vh;
-  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const Wrapper = styled.div`
-width: 80%;
-max-width: 400px;
-padding: 20px;
-border-radius: 30px; /* set border radius to 10px */
-background-color: rgba(255, 255, 255, 0.9); /* set opacity to 0.5 */
+const VideoBackground = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
+
+const Wrapper = styled.div`
+  width: 80%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+`;
+
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 500;
@@ -64,7 +73,6 @@ class SignUp extends Component {
     this.state = {
       input: {},
       redirect: false,
-      compredirect: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -101,34 +109,30 @@ class SignUp extends Component {
     }
   }
 
-  compred = () => {
-    this.setState({ compredirect: true });
-  };
-
   render() {
     return (
-        <Container>
-          <video src='/videos/login.mp4' autoPlay loop muted />
+      <Container>
+        <VideoBackground src='/videos/login.mp4' autoPlay loop muted />
 
-          <Wrapper>
-            <Title>CREATE A USER ACCOUNT</Title>
-            <Form onSubmit={this.handleSubmit}>
-              <Input type="text" name="username" placeholder="username" required onChange={this.handleChange} />
-              <Input placeholder="email" name="useremail" required onChange={this.handleChange} />
-              <Input type="password" name="userpass" placeholder="password" required onChange={this.handleChange} />
-              <Input
-                type="password"
-                name="confirmpass"
-                placeholder="confirm password"
-                required
-                onChange={this.handleChange}
-              />
-              <Button>CREATE</Button>
-              <SignUpLink to="/user-login">ALREADY HAVE AN ACCOUNT?</SignUpLink>
-            </Form>
-            {this.state.redirect ? <Navigate to="/user-login" /> : null}
-          </Wrapper>
-        </Container>
+        <Wrapper>
+          <Title>CREATE A USER ACCOUNT</Title>
+          <Form onSubmit={this.handleSubmit}>
+            <Input type="text" name="username" placeholder="username" required onChange={this.handleChange} />
+            <Input placeholder="email" name="useremail" required onChange={this.handleChange} />
+            <Input type="password" name="userpass" placeholder="password" required onChange={this.handleChange} />
+            <Input
+              type="password"
+              name="confirmpass"
+              placeholder="confirm password"
+              required
+              onChange={this.handleChange}
+            />
+            <Button>CREATE</Button>
+            <SignUpLink to="/user-login">ALREADY HAVE AN ACCOUNT?</SignUpLink>
+          </Form>
+          {this.state.redirect ? <Navigate to="/user-login" /> : null}
+        </Wrapper>
+      </Container>
     );
   }
 }
