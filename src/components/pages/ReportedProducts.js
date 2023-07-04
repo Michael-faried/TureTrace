@@ -56,23 +56,34 @@ const ReportedProducts = () => {
 
       <h1 style={{ textAlign: "center", marginBottom: "20px", color: "#FFFFFF" }}>{companyName2}</h1>
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "20px" }}>
-        <h1 style={{ color: "#FFFFFF" }}>Reported Products</h1>
-        {reportedProducts.length > 0 && (
-          <button
-            style={{
-              backgroundColor: "white",
-              color: "red",
-              marginTop: "10px",
-              marginBottom: "10px",
-              padding: "12px 24px",
-              borderColor: "white",
-            }}
-            onClick={handleDeleteAll}
-          >
-            Delete All
-          </button>
-        )}
-      </div>
+  <h1 style={{ color: "#FFFFFF" }}>Reported Products</h1>
+  {reportedProducts.length > 0 && (
+    <button
+      style={{
+        backgroundColor: "transparent",
+        color: "red",
+        marginTop: "10px",
+        marginBottom: "10px",
+        padding: "12px 24px",
+        border: "none",
+        fontSize: "24px",
+        transition: "background-color 0.5s, color 0.5s",
+        marginLeft: "auto",
+      }}
+      onClick={handleDeleteAll}
+      onMouseOver={(e) => {
+        e.target.style.backgroundColor = "red";
+        e.target.style.color = "white";
+      }}
+      onMouseOut={(e) => {
+        e.target.style.backgroundColor = "transparent";
+        e.target.style.color = "red";
+      }}
+    >
+      Delete All
+    </button>
+  )}
+</div>
 
       {reportedProducts.length === 0 ? (
         <p style={{ textAlign: "center", color: "#FFFFFF" }}>No reported products found.</p>
@@ -82,7 +93,7 @@ const ReportedProducts = () => {
             <div
               key={index}
               style={{
-                backgroundColor: "#ffffff",
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
                 border: "1px solid #cccccc",
                 borderRadius: "4px",
                 padding: "10px",
@@ -107,16 +118,24 @@ const ReportedProducts = () => {
               </div>
               <button
                 style={{
-                  backgroundColor: "white",
-                  color: "red",
+                  backgroundColor: "red",
+                  color: "white",
                   marginTop: "10px",
                   position: "absolute",
                   bottom: "10px",
                   right: "10px",
                   padding: "8px 16px",
-                  borderColor: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  transition: "background-color 0.5s",
                 }}
                 onClick={() => handleDelete(index)}
+                onMouseOver={(e) => {
+                  e.target.style.backgroundColor = "darkred";
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.backgroundColor = "red";
+                }}
               >
                 Delete
               </button>

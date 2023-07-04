@@ -113,6 +113,9 @@ export default function Products() {
                       <Typography gutterBottom variant="h5" component="h2">
                         {product.name}
                       </Typography>
+                      <Typography gutterBottom variant="h6" component="h2" sx={{ fontSize: '14px' }}>
+                        {product.model}
+                      </Typography>
                       <Typography variant="body2" sx={{ pt: 2, pb: 0 }}>
                         {product.description}
                       </Typography>
