@@ -147,13 +147,13 @@ contract System {
         return allCompanies;
     }
 
-    function get_function_report(string memory company_name) public onlyCompany() view returns(Report[] memory) {
+    function get_function_report(string memory company_name) view returns(Report[] memory) {
         Report[] memory reports_of_company = companyReports[company_name];
 
         return reports_of_company;
     }
 
-    function deleteReport(string memory companyname, uint index) public onlyCompany() {
+    function deleteReport(string memory companyname, uint index) {
         require(index < companyReports[companyname].length, "Invalid index");
 
         // Move the last element to the index being deleted
@@ -163,7 +163,7 @@ contract System {
         companyReports[companyname].pop();
     }
     
-    function delete_allReport(string memory companyname) public onlyCompany() {
+    function delete_allReport(string memory companyname) {
     
     // Remove the last element
     delete companyReports[companyname];
