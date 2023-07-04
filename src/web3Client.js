@@ -94,7 +94,7 @@ export async function UploadProducts_send(_products){
         await init();
     }
     
-    console.log(_products);
+    // console.log(_products);
     return Smartcontract.methods.upload_Products(_products).send({from:selectedAccount});
 }
 
@@ -104,7 +104,7 @@ export async function UploadProducts_call(_products){
         await init();
     }
     
-    console.log(Smartcontract.methods.upload_Products(_products).call());
+    // console.log(Smartcontract.methods.upload_Products(_products).call());
     return Smartcontract.methods.upload_Products(_products).call();
 }
 
