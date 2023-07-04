@@ -102,6 +102,8 @@ function Upload() {
     fontSize: '48px',
     fontWeight: 'bold',
     marginBottom: '20px',
+    textAlign: 'center',
+    color: 'white', // Add this line to set the text color to white
   };
 
   const chooseFileButtonStyle = {
@@ -113,20 +115,21 @@ function Upload() {
   };
 
   return (
-    <div className="popup" style={{ backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+    <div className="popup" style={{  backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+            <video src='/videos/video.mp4' autoPlay loop muted />
       <div className="popup-inner">
+        <h1 style={companyNameStyle}>{companyName2}</h1>
         <main>
-          <h1 style={companyNameStyle}>{companyName2}</h1>
-          <h1>Click to Upload a Product(s)</h1>
+          <h1 style={{ color: 'white' }}>Click to Upload a Product(s)</h1>
           <br />
           <input type="file" id="fileUpload" onChange={handleFileUpload} style={{ display: 'none' }} />
-          <label className='btn btn--outline btn--large' htmlFor="fileUpload" style={{ height: '21px', marginRight: '10px' }}>
+          <label className='btn btn--outline btn--large' htmlFor="fileUpload" style={{ height: '21px', marginRight: '10px', color: 'white' }}>
             Choose File
           </label>
-          <span>{uploadedFileName && `Uploaded File: ${uploadedFileName}`}</span>
+          <span style={{ color: 'white' }}>{uploadedFileName && `Uploaded File: ${uploadedFileName}`}</span>
           <Popup trigger={buttonPup} setTrigger={setButtonPup}></Popup>
           {csvData.length > 0 && (
-            <button style={{ height: '38px', marginRight: '10px', marginTop: '15px' }} className='btn btn--outline btn--large' onClick={handleDownloadQRs}>
+            <button style={{ height: '38px', marginRight: '10px', marginLeft: '15px', marginTop: '15px',color: 'white' }} className='btn btn--outline btn--large' onClick={handleDownloadQRs}>
               Download QR Codes
             </button>
           )}
