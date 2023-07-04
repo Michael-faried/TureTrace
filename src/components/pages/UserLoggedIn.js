@@ -6,7 +6,6 @@ import { verify, init } from '../../web3Client';
 import { useNavigate } from 'react-router-dom';
 import QrScannerComponent from './QrScannerComponent';
 
-
 const UserLoggedIn = (props) => {
   useEffect(() => {
     // Initialize web3 when the component mounts
@@ -85,17 +84,19 @@ const UserLoggedIn = (props) => {
           {isAuthentic && (
             <div className='authentic-product-container'>
               <img src={resstate[5]} alt='Authentic Product' className='authentic-product-image' />
-              <p className='dummy-text'>Product ID: {resstate[0]}</p>
-              <p className='dummy-text'>Product Name: {resstate[1]}</p>
-              <p className='dummy-text'>Product Model: {resstate[2]}</p>
-              <p className='dummy-text'>{resstate[3]}</p>
+              <div className='product-details'>
+                <p style={{ fontSize: '1.5rem' }}><strong>Product ID: </strong> {resstate[0]}</p>
+                <p style={{ fontSize: '1.5rem' }}><strong>Product Name: </strong> {resstate[1]}</p>
+                <p style={{ fontSize: '1.5rem' }} ><strong>Product Model: </strong> {resstate[2]}</p>
+                <p style={{ fontSize: '0.9rem' }} >{resstate[3]}</p>
+              </div>
             </div>
           )}
         </div>
       )}
     </div>
   );
-  
 };
 
 export default UserLoggedIn;
+

@@ -25,15 +25,15 @@
 }
 
 .land-hero-container h1 {
-  font-size: 60px;
+  font-size: 20;
   text-align: center;
-  margin-top: 25px;
-  margin-bottom: 8px; /* Reduced margin */
+  margin-top: 5px;
+  margin-bottom: 5px; /* Reduced margin */
 }
 
 .land-hero-container p {
-  margin-top: 4px; /* Reduced margin */
-  font-size: 28px; /* Adjusted font size */
+  margin-top: 0px; /* Reduced margin */
+  font-size: 18px; /* Adjusted font size */
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
 }
@@ -60,24 +60,42 @@
 
 .product-result-container {
   text-align: center;
-  margin-top: 20px; /* Reduced margin */
+  margin-top: 2px; /* Reduced margin */
   overflow-y: auto;
   max-height: calc(100vh - 200px);
 }
 
 .authentic-product-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-top: 10px; /* Reduced margin */
+  padding: 2rem;
+  max-width: 100%;
+
 }
 
 .authentic-product-image {
-  height: 30vh;
-  object-fit: contain;
-  margin-bottom: 6px; /* Reduced margin */
-  max-width: 50%;
-  margin-right: 10px;
+  max-width: 100%;
+  max-height: 300px;
+  margin-right: 2rem;
+  margin-left: 14rem ;
+}
+
+.product-details {
+  flex: 1;
+  padding: 1rem;
+}
+
+.product-details p {
+  margin-bottom: 5px;
+}
+
+.product-details p strong {
+  font-weight: bold;
+  font-size: 24px;
+  color: #F1948A;
+}
+.product-details p + p {
+  margin-top: 1;
 }
 
 @media screen and (max-width: 960px) {
