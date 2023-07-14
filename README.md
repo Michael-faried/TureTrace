@@ -1,3 +1,25 @@
+# Identifying Fake Products Using Blockchain Technology
+## Description
+Counterfeiting is a persistent global issue that poses significant challenges to industries, consumers, and economies worldwide. This paper addresses the problem of identifying fake products through the implementation of blockchain technology. The primary objective is to establish a robust system that enables the authentication of products at each stage of the supply chain, thereby reducing reliance on traders and ensuring end-users receive genuine goods. To tackle this problem, a combined approach of decentralized blockchain technology and supply chain management is proposed. This approach allows for the tracking and verification of product authenticity from the manufacturer to the end user. By leveraging blockchain's inherent transparency and immutability, each product's origin, manufacturing details, and subsequent transactions can be securely recorded and verified. 
+
+## Implemented Functions
+### User Functions
+1. User Registration
+2. User Login
+3. Scan QR Code (Real-Time)
+4. Verify Product
+5. Send Report
+
+## Company Functions
+1. Company Registration
+2. Company Login
+3. Upload Product (CSV File)
+4. Recieve Products Report
+5. Delete A Report
+6. Delete All Reports
+7. Recieve Company Products
+8. Delete Product By Model
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
