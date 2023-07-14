@@ -10,8 +10,6 @@ let Smartcontract;
 let is_initialized = false;
 
 
-
-
 //connection
 export const init = async ()=>{
   // connect to MetaMask
@@ -35,8 +33,6 @@ export const init = async ()=>{
   const web3 = new Web3(provider);
 
   const networkId = await web3.eth.net.getId(); // connect to network(Ganache)
-//   UserSmartcontract = new web3.eth.Contract(User_Con.abi, User_Con.networks[networkId].address);
-//   CompanySmartcontract = new web3.eth.Contract(Company_Con.abi, Company_Con.networks[networkId].address);
 Smartcontract = new web3.eth.Contract(System.abi, System.networks[networkId].address);
 
 
@@ -59,8 +55,6 @@ export async function register_comp(_name,_email,_password){
     {
         await init();
     }
-    console.log("company registration called from web3");
-    console.log(_name,_email,_password);
     var _cert_num =1;
     Smartcontract.methods.register_Company(selectedAccount,_name,_email,_password,_cert_num).send({from : selectedAccount});
 }
@@ -81,9 +75,7 @@ export async function login_comp(_name,_password){
         await init();
     }
     console.log("company login called from web3")
-    // console.log(_name,_password);
     localStorage.setItem("companyName",_name)
-    console.log(Smartcontract.methods.login_company(selectedAccount,_name,_password).call());
     return Smartcontract.methods.login_company(selectedAccount,_name,_password).call();
 }
 
@@ -121,9 +113,6 @@ export async function verify(product_add){
     {
         await init();
     }
-    // //console.log(Smartcontract.methods.verify_product(product_add).call());
-    // console.log("web3")
-    // console.log(Smartcontract.methods.verify_product(product_add).call());
     return Smartcontract.methods.verify_product(product_add).call();
 }
 
@@ -144,14 +133,6 @@ export async function get_companies_names(){
     const allCompanies = await Smartcontract.methods.get_companies_names().call();
     return allCompanies;
 }
-
-// export async function retrieve_company_products(Company_name){
-//     if(!is_initialized)
-//     {
-//         await init();
-//     }
-//     return Smartcontract.methods.retrieve_company_products(Company_name).send({from:selectedAccount});
-// }
 
 export async function retrieve_company_products(Company_name){
     if(!is_initialized)

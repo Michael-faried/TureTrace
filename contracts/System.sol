@@ -11,7 +11,6 @@ contract System {
         string password;
         uint256 certificate_num;
     }
-
         struct User {
         string name;
         string email;
@@ -26,6 +25,7 @@ contract System {
         string description;
         string companyName;
         string imageLink;
+        // Product Image
     }
 
     struct Report {
